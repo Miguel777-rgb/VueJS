@@ -60,7 +60,8 @@ const error = ref(null);
 
 onMounted(async () => {
   const cui = route.params.cui;
-  const backendUrl = `https://sisacad-enrollments-backend.vercel.app/restful/enrollment-certificate/?cui=${cui}`;
+  const baseUrl = (import.meta.env.VITE_API_URL || '/api').replace(/\/$/, '');
+  const backendUrl = `${baseUrl}/restful/enrollment-certificate/?cui=${cui}`;
   
   try {
     const response = await axios.get(backendUrl);
